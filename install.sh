@@ -22,7 +22,8 @@ done
 
 
 #vimrc
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/backup
+mkdir -p ~/.config/nvim/swap
 ln -s "$(pwd)/init.vim" ~/.vimrc
 ln -s "$(pwd)/init.vim" ~/.config/nvim/init.vim
 

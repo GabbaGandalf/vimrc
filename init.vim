@@ -261,10 +261,11 @@ set tags=./tags;,tags;
 
 " }}}
 "  Backup {{{
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+set backupdir=~/.config/nvim/backup//
+set directory=~/.config/nvim/swap//
 " set undodir=~/.vim/undo//
 " set undofile
+
 "}}}
 " Functions{{{
 function! NeatFoldText()
