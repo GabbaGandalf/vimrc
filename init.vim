@@ -91,6 +91,7 @@ call dein#add('neomake/neomake',{'on_cmd': 'write'})
 " 	let g:easytags_suppress_ctags_warning = 1
 " call dein#add('xolox/vim-misc')
 call dein#add('ludovicchabant/vim-gutentags')
+	let g:gutentags_tagfile = ".tags"
 
 if dein#check_install()
   call dein#install()
