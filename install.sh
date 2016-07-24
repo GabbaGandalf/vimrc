@@ -41,6 +41,7 @@ fi
 if [ $minimal -eq 0 ] 
 then
 	echo "installing dein plugin manager"
-	sh dein.sh ~/.config/nvim/dein
+	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+	sh installer.sh ~/.config/nvim/dein
 fi
 
