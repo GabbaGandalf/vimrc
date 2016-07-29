@@ -162,8 +162,9 @@ set laststatus=2
 
 "folding settings
 set foldmethod=syntax
-set foldnestmax=3
-"set foldlevel=99
+set foldnestmax=1
+" set foldlevel=3
+" set nofoldenable
 set foldtext=NeatFoldText()
 
 nnoremap <Leader><Leader> za
@@ -235,25 +236,29 @@ au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 set hidden
 nnoremap <tab> <c-^>
 " }}}
-" " gui {{{ 
-" set guioptions-=m  "remove menu bar
-" set guioptions-=T  "remove toolbar
-" set guioptions-=r  "remove right-hand scroll bar
-" set guioptions-=L  "remove left-hand scroll bar
-" set guiheadroom=0
-" set guicursor+=a:blinkon0
-" if has("gui_running")
-"   colorscheme hybrid
-" endif
-" " Fix borders of fullscreen GUI
-" if has('gui_gtk') && has('gui_running')
-"   let s:border = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
-"   exe 'silent !echo ''style "vimfix" { bg[NORMAL] = "' . escape(s:border, '#') . '" }'''.
-" 			  \' > ~/.gtkrc-2.0'
-"   exe 'silent !echo ''widget "vim-main-window.*GtkForm" style "vimfix"'''.
-" 			  \' >> ~/.gtkrc-2.0'
-" endif
-" " }}}
+" gui {{{ 
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+set guiheadroom=0
+set guicursor+=a:blinkon0
+if has("gui_running")
+	try
+		colorscheme hybrid
+	catch /E185/
+		colorscheme desert
+	endtry
+endif
+" Fix borders of fullscreen GUI
+if has('gui_gtk') && has('gui_running')
+  let s:border = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
+  exe 'silent !echo ''style "vimfix" { bg[NORMAL] = "' . escape(s:border, '#') . '" }'''.
+			  \' > ~/.gtkrc-2.0'
+  exe 'silent !echo ''widget "vim-main-window.*GtkForm" style "vimfix"'''.
+			  \' >> ~/.gtkrc-2.0'
+endif
+" }}}
 " Misc {{{
 
 set wildmenu 
