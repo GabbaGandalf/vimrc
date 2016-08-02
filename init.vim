@@ -72,18 +72,25 @@ if executable('ranger')
 endif
 
 
-if executable('ag')
-	call dein#add('rking/ag.vim',{'on_cmd': ['Ag','Ag!']})
-endif
-call dein#add('ctrlpvim/ctrlp.vim',{'on_cmd' : ['CtrlP','CtrlPBuffer']})
-  	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
-	let g:ctrlp_use_caching = 0
-	nnoremap <Leader>o :CtrlP .<CR>
-	nnoremap <Leader>g :CtrlP<CR>
-	nnoremap <Leader>p :CtrlPBuffer<CR>
+" if executable('ag')
+" 	call dein#add('rking/ag.vim',{'on_cmd': ['Ag','Ag!']})
+" endif
+" call dein#add('ctrlpvim/ctrlp.vim',{'on_cmd' : ['CtrlP','CtrlPBuffer']})
+"   	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
+" 	let g:ctrlp_use_caching = 0
+" 	nnoremap <Leader>o :CtrlP .<CR>
+" 	nnoremap <Leader>g :CtrlP<CR>
+" 	nnoremap <Leader>p :CtrlPBuffer<CR>
+call dein#add('Junegunn/fzf', {'build' : './install --all'})
+call dein#add('Junegunn/fzf.vim')
+	" nnoremap <Leader>o :call fzf#run({'source': 'find . -maxdepth 1 -not -type d','sink': 'e','down': '40%'})<CR>
+	nnoremap <Leader>o :FZF<CR>
+	nnoremap <Leader>g :GFiles<CR>
+	nnoremap <Leader>p :Buffer<CR>
+	nnoremap <Leader>/ :Ag<CR>
 
 call dein#add('neomake/neomake',{'on_cmd': 'write'})
-    let g:neomake_python_enabled_makers = ['python']
+    let g:neomake_python_enabled_makers = ['python2']
 	autocmd! BufWritePost * Neomake
 
 " call dein#add('xolox/vim-easytags')
@@ -96,10 +103,10 @@ call dein#add('ludovicchabant/vim-gutentags')
 if dein#check_install()
   call dein#install()
 endif
-endif
 
 call dein#end()
 
+endif
 endif
 filetype plugin indent on
 " }}}
@@ -180,32 +187,41 @@ set list lcs=tab:\ \ ,extends:›,precedes:‹,nbsp:·,trail:·
 " }}}
 " Movement {{{
 set mouse=a
-inoremap kj <ESC>
-set ttimeoutlen=0
 
 " Movement in long lines
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-" scrolling
 " cursor position stays the same
-"set nostartofline
+set nostartofline
 set so=10
-" nnoremap <C-U> 4k
-" nnoremap <C-D> 4j
 set sidescroll=1
-
-" " Paragraph jumping not on empty lines
-" nnoremap <expr> { len(getline(line('.')-1)) > 0 ? '{+' : '{-'
-" nnoremap <expr> } len(getline(line('.')+1)) > 0 ? '}-' : '}+'
 
 " }}}
 " Mappings {{{
 " noremap ; :
 " noremap : ;
 
+set ttimeoutlen=0
+inoremap kj <ESC>
+if has('nvim')
+	" jk conflitcts with ranger, esc conflicts with zsh vi mode
+	" tnoremap kj <C-\><C-n>
+	tnoremap <C-\> <C-\><C-n>
+	tnoremap <C-h> <C-\><C-n><C-w>h
+	tnoremap <C-j> <C-\><C-n><C-w>j
+	tnoremap <C-k> <C-\><C-n><C-w>k
+	tnoremap <C-l> <C-\><C-n><C-w>l
+	" tnoremap <Leader>. <C-\><C-n>gt
+	" tnoremap <Leader>, <C-\><C-n>gT
+	autocmd BufWinEnter,WinEnter term://* startinsert
+endif
+
 nnoremap <Space> <NOP>
 
+"tab moving
+" nnoremap <Leader>. gt
+" nnoremap <Leader>, gT
 " Split moving
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -215,10 +231,9 @@ nnoremap <C-l> <C-w>l
 "Quickly paste from +reg
 nnoremap <Leader>v "+p
 vnoremap <Leader>v "+p
-
-nnoremap <Leader>c :e $MYVIMRC<CR>
-" avoid ex mode
-nmap Q q
+"Quickly yank to +reg
+nnoremap <Leader>c "+y
+vnoremap <Leader>c "+y
 
 "easy yank to end of line
 nnoremap Y y$
