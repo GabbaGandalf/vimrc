@@ -90,7 +90,7 @@ call dein#add('Junegunn/fzf.vim')
 	nnoremap <Leader>/ :Ag<CR>
 
 call dein#add('neomake/neomake',{'on_cmd': 'write'})
-    let g:neomake_python_enabled_makers = ['python2']
+    let g:neomake_python_enabled_makers = ['python']
 	autocmd! BufWritePost * Neomake
 
 " call dein#add('xolox/vim-easytags')
