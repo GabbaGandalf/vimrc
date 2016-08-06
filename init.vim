@@ -56,6 +56,7 @@ call dein#add('Shougo/neosnippet-snippets')
 " 	let g:neosnippet#snippets_directory='~/.config/nvim/dein/repos/github.com/honza/vim-snippets/snippets'
 
 call dein#add('w0ng/vim-hybrid')
+call dein#add('ervandew/matchem')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('tpope/vim-commentary')
 call dein#add('Konfekt/FastFold')
@@ -81,13 +82,25 @@ endif
 " 	nnoremap <Leader>o :CtrlP .<CR>
 " 	nnoremap <Leader>g :CtrlP<CR>
 " 	nnoremap <Leader>p :CtrlPBuffer<CR>
+
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
-	" nnoremap <Leader>o :call fzf#run({'source': 'find . -maxdepth 1 -not -type d','sink': 'e','down': '40%'})<CR>
 	nnoremap <Leader>o :FZF<CR>
 	nnoremap <Leader>g :GFiles<CR>
 	nnoremap <Leader>p :Buffer<CR>
 	nnoremap <Leader>/ :Ag<CR>
+	autocmd FileType fzf tnoremap <buffer> <C-j> <Down>
+	autocmd FileType fzf tnoremap <buffer> <C-k> <Up>
+
+	function! s:fzf_statusline()
+		" Override statusline as you like
+		highlight fzf1 ctermfg=161 ctermbg=None
+		highlight fzf2 ctermfg=7 ctermbg=None
+		highlight fzf3 ctermfg=7 ctermbg=None
+		setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+	endfunction
+	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
 
 call dein#add('neomake/neomake',{'on_cmd': 'write'})
     let g:neomake_python_enabled_makers = ['python']
@@ -166,6 +179,7 @@ set number
 set relativenumber
 
 set laststatus=2
+set noshowmode
 
 "folding settings
 set foldmethod=syntax
@@ -214,7 +228,7 @@ if has('nvim')
 	tnoremap <C-l> <C-\><C-n><C-w>l
 	" tnoremap <Leader>. <C-\><C-n>gt
 	" tnoremap <Leader>, <C-\><C-n>gT
-	autocmd BufWinEnter,WinEnter term://* startinsert
+	au BufWinEnter,WinEnter term://* startinsert
 endif
 
 nnoremap <Space> <NOP>
@@ -316,4 +330,3 @@ function! MyFoldText()
 endfunction
 " }}}
 " vim: fdm=marker:fdl=0
-
