@@ -107,10 +107,6 @@ call dein#add('neomake/neomake',{'on_cmd': 'write'})
     let g:neomake_python_enabled_makers = ['python']
 	autocmd! BufWritePost * Neomake
 
-" call dein#add('xolox/vim-easytags')
-" 	let g:easytags_async = 1
-" 	let g:easytags_suppress_ctags_warning = 1
-" call dein#add('xolox/vim-misc')
 call dein#add('ludovicchabant/vim-gutentags')
 	let g:gutentags_tagfile = ".tags"
 
@@ -126,11 +122,11 @@ filetype plugin indent on
 " }}}
 "{{{ Notes
 
-nnoremap <Leader>nm :e ~/Dropbox/notes/main.md<cr>
-nnoremap <Leader>nn :e ~/Dropbox/notes/
-nnoremap <Leader>nt :tabe ~/Dropbox/notes/main.md<cr>
-nnoremap <Leader>ns :CtrlP ~/Dropbox/notes/<cr>
-nnoremap <Leader>nf :e ~/Dropbox/notes/<cfile><cr>
+" nnoremap <Leader>nm :e ~/Dropbox/notes/main.md<cr>
+" nnoremap <Leader>nn :e ~/Dropbox/notes/
+" nnoremap <Leader>nt :tabe ~/Dropbox/notes/main.md<cr>
+" nnoremap <Leader>ns :CtrlP ~/Dropbox/notes/<cr>
+" nnoremap <Leader>nf :e ~/Dropbox/notes/<cfile><cr>
 
 "}}}
 " {{{ Ag
