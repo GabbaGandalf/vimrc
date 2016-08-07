@@ -16,7 +16,7 @@ call dein#add('Shougo/deoplete.nvim')
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#enable_smart_case = 1
 	let g:deoplete#auto_completion_start_length = 2
-	" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 call dein#add('zchee/deoplete-jedi',{'on_ft' : 'python'})
 	let deoplete#sources#jedi#show_docstring=1
@@ -26,8 +26,8 @@ if executable('clang')
 		let g:clang_auto_select = 0
 		let g:clang_omnicppcomplete_compliance = 0
 		let g:clang_make_default_keymappings = 0
+		" let g:clang_use_library = 1
 endif
-	" let g:clang_use_library = 1
 " call dein#add('zchee/deoplete-clang') "too slow somehow
 " 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 " 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
@@ -40,15 +40,16 @@ call dein#add('Shougo/neosnippet.vim',{'on_i': 1})
 	imap <C-l>     <Plug>(neosnippet_expand_or_jump)
 	smap <C-l>     <Plug>(neosnippet_expand_or_jump)
 	xmap <C-l>     <Plug>(neosnippet_expand_target)
-	imap <expr><TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ neosnippet#expandable_or_jumpable() ?
-		\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+	" imap <expr><TAB>
+	" 	\ pumvisible() ? "\<C-n>" :
+	" 	\ neosnippet#expandable_or_jumpable() ?
+	" 	\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+	" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	" 	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " TODO create own python snippets
 call dein#add('Shougo/neosnippet-snippets')
+	let g:neosnippet#snippets_directory = "~/vimrc/snippets"
 " call dein#add('honza/vim-snippets',{'on_i':1})
 " 	let g:neosnippet#disable_runtime_snippets = {
 " 	\   '_' : 1,

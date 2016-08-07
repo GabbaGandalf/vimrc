@@ -72,12 +72,12 @@ hi! link SpecialKey    NonText
 hi Delimiter       ctermfg=7
 hi Comment         ctermfg=8   cterm=italic
 hi Underlined      ctermfg=4   cterm=underline
-hi Type            ctermfg=4
+hi Type            ctermfg=6
 "hi String          ctermfg=9
 hi String          ctermfg=2
 hi Keyword         ctermfg=2
 hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
-hi Function        ctermfg=12
+hi Function        ctermfg=4
 hi Identifier      ctermfg=7   cterm=NONE
 hi Statement       ctermfg=15   cterm=bold
 "hi Statement       ctermfg=15   cterm=bold
