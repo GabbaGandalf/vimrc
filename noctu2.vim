@@ -77,7 +77,7 @@ hi Type            ctermfg=4
 hi String          ctermfg=2
 hi Keyword         ctermfg=2
 hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
-hi Function        ctermfg=4
+hi Function        ctermfg=12
 hi Identifier      ctermfg=7   cterm=NONE
 hi Statement       ctermfg=15   cterm=bold
 "hi Statement       ctermfg=15   cterm=bold
