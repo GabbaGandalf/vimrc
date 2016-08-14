@@ -22,7 +22,8 @@ hi MatchParen          ctermfg=1    ctermbg=NONE cterm=bold
 hi Pmenu               ctermfg=15    ctermbg=None
 hi PmenuThumb          ctermbg=7
 hi PmenuSBar           ctermbg=8
-hi PmenuSel            ctermfg=7     ctermbg=4
+" hi PmenuSel            ctermfg=7     ctermbg=4
+hi PmenuSel            ctermfg=7     cterm=bold 
 hi ColorColumn         ctermbg=0
 hi SpellBad            ctermfg=1     ctermbg=NONE  cterm=underline
 hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
