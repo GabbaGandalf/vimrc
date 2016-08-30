@@ -234,7 +234,7 @@ nnoremap Y y$
 " toglle folds
 nnoremap <Leader><Leader> za
 vnoremap <Leader><Leader> za
-k
+
 " }}}
 " Filetupe {{{
 
