@@ -77,16 +77,10 @@ endif
 " if executable('ag')
 " 	call dein#add('rking/ag.vim',{'on_cmd': ['Ag','Ag!']})
 " endif
-" call dein#add('ctrlpvim/ctrlp.vim',{'on_cmd' : ['CtrlP','CtrlPBuffer']})
-"   	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
-" 	let g:ctrlp_use_caching = 0
-" 	nnoremap <Leader>o :CtrlP .<CR>
-" 	nnoremap <Leader>g :CtrlP<CR>
-" 	nnoremap <Leader>p :CtrlPBuffer<CR>
 
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
-	nnoremap <Leader>o :FZF<CR>
+	nnoremap <Leader>o :FZF -e<CR>
 	nnoremap <Leader>g :GFiles<CR>
 	nnoremap <Leader>p :Buffer<CR>
 	nnoremap <Leader>/ :Ag<CR>
@@ -120,15 +114,6 @@ endif
 endif
 filetype plugin indent on
 " }}}
-"{{{ Notes
-
-" nnoremap <Leader>nm :e ~/Dropbox/notes/main.md<cr>
-" nnoremap <Leader>nn :e ~/Dropbox/notes/
-" nnoremap <Leader>nt :tabe ~/Dropbox/notes/main.md<cr>
-" nnoremap <Leader>ns :CtrlP ~/Dropbox/notes/<cr>
-" nnoremap <Leader>nf :e ~/Dropbox/notes/<cfile><cr>
-
-"}}}
 " {{{ Ag
 " The Silver Searcher
 if executable('ag')
@@ -185,8 +170,6 @@ set foldnestmax=1
 " set nofoldenable
 set foldtext=NeatFoldText()
 
-nnoremap <Leader><Leader> za
-vnoremap <Leader><Leader> za
 
 " }}}
 " Indent options{{{
@@ -210,8 +193,6 @@ set sidescroll=1
 
 " }}}
 " Mappings {{{
-" noremap ; :
-" noremap : ;
 
 set ttimeoutlen=0
 inoremap kj <ESC>
@@ -233,6 +214,7 @@ nnoremap <Space> <NOP>
 "tab moving
 " nnoremap <Leader>. gt
 " nnoremap <Leader>, gT
+
 " Split moving
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -248,21 +230,29 @@ vnoremap <Leader>c "+y
 
 "easy yank to end of line
 nnoremap Y y$
+
+" toglle folds
+nnoremap <Leader><Leader> za
+vnoremap <Leader><Leader> za
+k
 " }}}
 " Filetupe {{{
-
 
 au FileType *		setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable comment new line
 au FileType c		setlocal commentstring=//\ %s
 au FileType cpp		setlocal commentstring=//\ %s
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
+
 " }}}
 " Buffers  {{{
+
 set hidden
 nnoremap <tab> <c-^>
+
 " }}}
 " gui {{{ 
+
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
@@ -284,6 +274,7 @@ if has('gui_gtk') && has('gui_running')
   exe 'silent !echo ''widget "vim-main-window.*GtkForm" style "vimfix"'''.
 			  \' >> ~/.gtkrc-2.0'
 endif
+
 " }}}
 " Misc {{{
 
@@ -292,6 +283,7 @@ set tags=./tags;,tags;
 
 " }}}
 "  Backup {{{
+
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 " set undodir=~/.vim/undo//
