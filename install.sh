@@ -44,8 +44,8 @@ ln -s "$(pwd)/init.vim" ~/.config/nvim/init.vim
 if [ $color -eq 1 ]
 	if [ $force -eq 1 ]
 	then
-		rm ~/.vim/colors/noctu2.vim
-		rm ~/.config/nvim/colors/noctu2.vim
+		rm -r ~/.vim/colors
+		rm -r ~/.config/nvim/colors
 	fi
 then
 	mkdir -p ~/.vim/colors
