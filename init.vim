@@ -40,24 +40,12 @@ call dein#add('Shougo/neosnippet.vim',{'on_i': 1})
 	imap <C-l>     <Plug>(neosnippet_expand_or_jump)
 	smap <C-l>     <Plug>(neosnippet_expand_or_jump)
 	xmap <C-l>     <Plug>(neosnippet_expand_target)
-	" imap <expr><TAB>
-	" 	\ pumvisible() ? "\<C-n>" :
-	" 	\ neosnippet#expandable_or_jumpable() ?
-	" 	\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	" 	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" TODO create own python snippets
 call dein#add('Shougo/neosnippet-snippets')
 	let g:neosnippet#snippets_directory = "~/vimrc/snippets"
-" call dein#add('honza/vim-snippets',{'on_i':1})
-" 	let g:neosnippet#disable_runtime_snippets = {
-" 	\   '_' : 1,
-" 	\ }
-" 	let g:neosnippet#snippets_directory='~/.config/nvim/dein/repos/github.com/honza/vim-snippets/snippets'
 
+call dein#add('wellle/targets.vim')
 call dein#add('w0ng/vim-hybrid')
-call dein#add('ervandew/matchem')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('tpope/vim-commentary')
 call dein#add('Konfekt/FastFold')
@@ -73,11 +61,9 @@ if executable('ranger')
 		nnoremap <Leader>r :Ranger<CR>
 endif
 
-
 " if executable('ag')
 " 	call dein#add('rking/ag.vim',{'on_cmd': ['Ag','Ag!']})
 " endif
-
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
 	nnoremap <Leader>o :FZF -e<CR>
@@ -121,7 +107,7 @@ if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
 	set grepformat=%f:%l:%c:%m,%f:%l:%m
 
-	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	" Use ag in CtrlP 
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 endif
@@ -147,8 +133,7 @@ set incsearch
 " Ignore case in searches if query doesn't include capitals
 set ignorecase
 set smartcase
-
-" This unsets the "last search pattern" register by hitting return
+" This unsets the last search pattern register by hitting return
 nnoremap <CR> :noh<CR><CR> 
 
 " }}}
@@ -291,6 +276,18 @@ set directory=~/.config/nvim/swap//
 
 "}}}
 " Functions{{{
+
+"Display the numbered registers, press a key and paste it to the buffer
+function! Reg()
+    reg
+    echo "Register: "
+    let char = nr2char(getchar())
+    if char != "\<Esc>"
+        execute "normal! \"".char."p"
+    endif
+    redraw
+endfunction
+
 function! NeatFoldText()
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
@@ -317,5 +314,13 @@ function! MyFoldText()
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
+" }}}
+" Commands {{{
+
+"Reg paste
+command! -nargs=0 Reg call Reg()
+" sudo write
+cnoremap w!! w !sudo tee % >/dev/null
+
 " }}}
 " vim: fdm=marker:fdl=0
