@@ -45,8 +45,8 @@ call dein#add('Shougo/neosnippet-snippets')
 	let g:neosnippet#snippets_directory = "~/vimrc/snippets"
 
 call dein#add('wellle/targets.vim')
-call dein#add('w0ng/vim-hybrid')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
+call dein#add('mitsuhiko/vim-python-combined')
 call dein#add('tpope/vim-commentary')
 call dein#add('Konfekt/FastFold')
 	let g:fastfold_savehook = 1
@@ -150,9 +150,9 @@ set noshowmode
 
 "folding settings
 set foldmethod=syntax
-set foldnestmax=1
-" set foldlevel=3
-" set nofoldenable
+set foldnestmax=5
+set foldlevelstart=0
+set foldminlines=10
 set foldtext=NeatFoldText()
 
 
@@ -323,4 +323,4 @@ command! -nargs=0 Reg call Reg()
 cnoremap w!! w !sudo tee % >/dev/null
 
 " }}}
-" vim: fdm=marker:fdl=0
+" vim: fdm=marker:fdl=0:fml=1
