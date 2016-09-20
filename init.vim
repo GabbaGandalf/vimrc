@@ -1,5 +1,5 @@
 let mapleader = "\<Space>"
-" {{{ dein
+" dein {{{
 if &compatible
   set nocompatible
 endif
@@ -45,8 +45,10 @@ call dein#add('Shougo/neosnippet-snippets')
 	let g:neosnippet#snippets_directory = "~/vimrc/snippets"
 
 call dein#add('wellle/targets.vim')
+call dein#add('kshenoy/vim-signature')
+call dein#add('chriskempson/base16-vim')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
-call dein#add('mitsuhiko/vim-python-combined')
+call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
 call dein#add('tpope/vim-commentary')
 call dein#add('Konfekt/FastFold')
 	let g:fastfold_savehook = 1
@@ -54,16 +56,7 @@ call dein#add('Konfekt/FastFold')
 	nmap zuz <Plug>(FastFoldUpdate)
 	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
 	let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-if executable('ranger')
-	call dein#add('rbgrouleff/bclose.vim')
-	call dein#add('francoiscabrol/ranger.vim')
-		let g:ranger_map_keys = 0
-		nnoremap <Leader>r :Ranger<CR>
-endif
 
-" if executable('ag')
-" 	call dein#add('rking/ag.vim',{'on_cmd': ['Ag','Ag!']})
-" endif
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
 	nnoremap <Leader>o :FZF -e<CR>
@@ -82,11 +75,6 @@ call dein#add('Junegunn/fzf.vim')
 	endfunction
 	autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-
-call dein#add('neomake/neomake',{'on_cmd': 'write'})
-    let g:neomake_python_enabled_makers = ['python']
-	autocmd! BufWritePost * Neomake
-
 call dein#add('ludovicchabant/vim-gutentags')
 	let g:gutentags_tagfile = ".tags"
 
@@ -100,7 +88,7 @@ endif
 endif
 filetype plugin indent on
 " }}}
-" {{{ Ag
+" Ag {{{ 
 " The Silver Searcher
 if executable('ag')
 	" Use ag over grep
@@ -150,10 +138,10 @@ set noshowmode
 
 "folding settings
 set foldmethod=syntax
-set foldnestmax=5
+set foldnestmax=3
 set foldlevelstart=0
-set foldminlines=10
-set foldtext=NeatFoldText()
+" set foldminlines=5
+set foldtext=FoldText()
 
 
 " }}}
@@ -180,7 +168,7 @@ set sidescroll=1
 " Mappings {{{
 
 set ttimeoutlen=0
-inoremap kj <ESC>
+inoremap kj <c-c>`^
 if has('nvim')
 	" jk conflitcts with ranger, esc conflicts with zsh vi mode
 	" tnoremap kj <C-\><C-n>
@@ -233,7 +221,7 @@ au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " Buffers  {{{
 
 set hidden
-nnoremap <tab> <c-^>
+nnoremap <bs> <c-^>
 
 " }}}
 " gui {{{ 
@@ -267,7 +255,7 @@ set wildmenu
 set tags=./tags;,tags;
 
 " }}}
-"  Backup {{{
+" Backup {{{
 
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
@@ -286,6 +274,41 @@ function! Reg()
         execute "normal! \"".char."p"
     endif
     redraw
+endfunction
+
+function! FoldText()
+	let l:lpadding = &fdc
+	redir => l:signs
+	  execute 'silent sign place buffer='.bufnr('%')
+	redir End
+	let l:lpadding += l:signs =~ 'id=' ? 2 : 0
+
+	if exists("+relativenumber")
+	  if (&number)
+		let l:lpadding += max([&numberwidth, strlen(line('$'))]) + 1
+	  elseif (&relativenumber)
+		let l:lpadding += max([&numberwidth, strlen(v:foldstart - line('w0')), strlen(line('w$') - v:foldstart), strlen(v:foldstart)]) + 1
+	  endif
+	else
+	  if (&number)
+		let l:lpadding += max([&numberwidth, strlen(line('$'))]) + 1
+	  endif
+	endif
+
+	" expand tabs
+	let l:start = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
+	let l:end = substitute(substitute(getline(v:foldend), '\t', repeat(' ', &tabstop), 'g'), '^\s*', '', 'g')
+
+	let l:info = ' (' . (v:foldend - v:foldstart) . ')'
+	let l:infolen = strlen(substitute(l:info, '.', 'x', 'g'))
+	let l:width = winwidth(0) - l:lpadding - l:infolen
+
+	let l:separator = ' … '
+	let l:separatorlen = strlen(substitute(l:separator, '.', 'x', 'g'))
+	let l:start = strpart(l:start , 0, l:width - strlen(substitute(l:end, '.', 'x', 'g')) - l:separatorlen)
+	" let l:text = l:start . ' … ' . l:end
+	let l:text = l:start . '…'
+	return l:text . repeat(' ', l:width - strlen(substitute(l:text, ".", "x", "g"))) . l:info
 endfunction
 
 function! NeatFoldText()
