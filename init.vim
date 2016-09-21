@@ -46,6 +46,7 @@ call dein#add('Shougo/neosnippet-snippets')
 
 call dein#add('wellle/targets.vim')
 call dein#add('kshenoy/vim-signature')
+call dein#add('airblade/vim-gitgutter')
 call dein#add('chriskempson/base16-vim')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
