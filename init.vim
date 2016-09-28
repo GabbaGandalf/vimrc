@@ -1,16 +1,45 @@
 let mapleader = "\<Space>"
-" dein {{{
+" plugins {{{
+
+" dein begin{{{
 if &compatible
   set nocompatible
 endif
 
 if has('nvim')
+" install dein
+if empty(glob('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim'))
+	silent !mkdir -p ~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+	silent !git clone https://github.com/Shougo/dein.vim.git ~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+	autocmd VimEnter * if !dein#util#_is_sudo() call dein#install() | call dein#remote_plugins() | nested source $MYVIMRC | endif
+endif
+
 if !empty(glob('~/.config/nvim/dein'))
 set runtimepath^=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.config/nvim/dein'))
 call dein#add('Shougo/dein.vim')
+" }}}
 
+" misc {{{
+call dein#add('tpope/vim-unimpaired')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-commentary')
+call dein#add('wellle/targets.vim')
+call dein#add('airblade/vim-gitgutter')
+
+call dein#add('Konfekt/FastFold')
+	let g:fastfold_savehook = 1
+	let g:fastfold_fdmhook = 0
+	nmap zuz <Plug>(FastFoldUpdate)
+	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+	" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+call dein#add('ludovicchabant/vim-gutentags')
+	let g:gutentags_tagfile = ".tags"
+" }}}
+
+" Autocompletion {{{
 call dein#add('Shougo/deoplete.nvim')
 	autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 	let g:deoplete#enable_at_startup = 1
@@ -42,22 +71,15 @@ call dein#add('Shougo/neosnippet.vim',{'on_i': 1})
 	xmap <C-l>     <Plug>(neosnippet_expand_target)
 
 call dein#add('Shougo/neosnippet-snippets')
-	let g:neosnippet#snippets_directory = "~/vimrc/snippets"
+	let g:neosnippet#snippets_directory = "~/.config/nvim/snippets"
+" }}}
 
-call dein#add('wellle/targets.vim')
-call dein#add('kshenoy/vim-signature')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('chriskempson/base16-vim')
+" Language Specific {{{
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
-call dein#add('tpope/vim-commentary')
-call dein#add('Konfekt/FastFold')
-	let g:fastfold_savehook = 1
-	let g:fastfold_fdmhook = 0
-	nmap zuz <Plug>(FastFoldUpdate)
-	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-	let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+" }}}
 
+" fzf {{{
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
 	nnoremap <Leader>o :FZF -e<CR>
@@ -75,10 +97,9 @@ call dein#add('Junegunn/fzf.vim')
 		setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 	endfunction
 	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+" }}}
 
-call dein#add('ludovicchabant/vim-gutentags')
-	let g:gutentags_tagfile = ".tags"
-
+" dein end {{{
 if dein#check_install()
   call dein#install()
 endif
@@ -89,17 +110,7 @@ endif
 endif
 filetype plugin indent on
 " }}}
-" Ag {{{ 
-" The Silver Searcher
-if executable('ag')
-	" Use ag over grep
-	set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-	set grepformat=%f:%l:%c:%m,%f:%l:%m
 
-	" Use ag in CtrlP 
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-endif
 " }}}
 " Line Wrap {{{
 
@@ -131,19 +142,23 @@ nnoremap <CR> :noh<CR><CR>
 syntax on
 set background=dark
 colorscheme noctu2
+
 set number
 set relativenumber
 
 set laststatus=2
 set noshowmode
 
-"folding settings
+" }}}
+" Folding {{{
+
+" no unfold on { movements
+set foldopen=hor,mark,percent,quickfix,search,tag,undo
 set foldmethod=syntax
 set foldnestmax=3
 set foldlevelstart=0
 " set foldminlines=5
 set foldtext=FoldText()
-
 
 " }}}
 " Indent options{{{
@@ -258,6 +273,14 @@ set tags=./tags;,tags;
 " }}}
 " Backup {{{
 
+"ensure directories exist
+if empty(glob('~/.config/nvim/backup'))
+	silent !mkdir -p ~/.config/nvim/backup
+endif
+if empty(glob('~/.config/nvim/swap'))
+	silent !mkdir -p ~/.config/nvim/swap
+endif
+
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 " set undodir=~/.vim/undo//
@@ -277,6 +300,7 @@ function! Reg()
     redraw
 endfunction
 
+" Foldtexts {{{
 function! FoldText()
 	let l:lpadding = &fdc
 	redir => l:signs
@@ -338,6 +362,8 @@ function! MyFoldText()
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
+" }}}
+
 " }}}
 " Commands {{{
 
