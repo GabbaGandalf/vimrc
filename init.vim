@@ -239,6 +239,30 @@ nnoremap Y y$
 nnoremap <Leader><Leader> za
 vnoremap <Leader><Leader> za
 
+" easier : access(from konfekt.github.io)
+nnoremap : ,
+xnoremap : ,
+onoremap : ,
+
+nnoremap , :
+xnoremap , :
+onoremap , :
+
+nnoremap g: g,
+nnoremap g, <NOP>
+
+nnoremap @, @:
+nnoremap @: <NOP>
+
+" NOTE: Causes lag when 'q' is hit, for example when
+" - stopping to record a macro or
+" - exiting a buffer by a custom mapping to 'q'.
+nnoremap q, q:
+xnoremap q, q:
+
+nnoremap q: <NOP>
+xnoremap q: <NOP>
+
 " }}}
 " Filetupe {{{
 
