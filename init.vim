@@ -99,6 +99,20 @@ call dein#add('Junegunn/fzf.vim')
 	autocmd! User FzfStatusLine call <SID>fzf_statusline()
 " }}}
 
+" Notes {{{
+call dein#add('vimwiki/vimwiki')
+	let g:vimwiki_folding = 'expr'
+	let g:vimwiki_list = [{
+				\ 'path': '$HOME/Dropbox/wiki',
+				\ 'template_path': '$HOME/Dropbox/wiki/templates',
+				\ 'template_default': 'default',
+				\ 'template_ext': '.html',
+				\ 'auto_export': 1,
+				\ 'nested_syntaxes' : {'python': 'python', 'c++': 'cpp'} }]
+
+
+" }}}
+
 " dein end {{{
 if dein#check_install()
   call dein#install()
@@ -108,6 +122,7 @@ call dein#end()
 
 endif
 endif
+
 filetype plugin indent on
 " }}}
 
@@ -232,6 +247,7 @@ au FileType c		setlocal commentstring=//\ %s
 au FileType cpp		setlocal commentstring=//\ %s
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
+au FileType vimwiki		setlocal nowrap
 
 " }}}
 " Buffers  {{{
