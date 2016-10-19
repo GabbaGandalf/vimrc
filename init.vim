@@ -82,7 +82,7 @@ call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
 " fzf {{{
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
-	nnoremap <Leader>o :FZF -e<CR>
+	nnoremap <Leader>o :FZF<CR>
 	nnoremap <Leader>g :GFiles<CR>
 	nnoremap <Leader>p :Buffer<CR>
 	nnoremap <Leader>/ :Ag<CR>
