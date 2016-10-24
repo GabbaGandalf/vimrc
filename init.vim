@@ -179,7 +179,7 @@ set foldtext=FoldText()
 " }}}
 " Indent options{{{
 
-set ts=4 sts=4 sw=4 noexpandtab
+set ts=4 sts=4 sw=4 expandtab
 
 set list lcs=tab:\ \ ,extends:›,precedes:‹,nbsp:·,trail:·
 
@@ -240,9 +240,13 @@ nnoremap Y y$
 nnoremap <Leader><Leader> za
 vnoremap <Leader><Leader> za
 
+" quick save and exit
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>wq :wq<CR>
+
+" easy search for visual selection
+vnoremap // y/<C-R>"<CR>
 
 " }}}
 " Filetupe {{{
@@ -253,6 +257,9 @@ au FileType cpp		setlocal commentstring=//\ %s
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
 au FileType vimwiki		setlocal nowrap
+
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au BufRead,BufNewFile *.tf setlocal ts=2 sts=2 sw=2 expandtab
 
 " }}}
 " Buffers  {{{
