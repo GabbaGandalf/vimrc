@@ -22,8 +22,6 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
-call dein#add('tpope/vim-unimpaired')
-call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-commentary')
 call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
@@ -102,6 +100,7 @@ call dein#add('Junegunn/fzf.vim')
 " Notes {{{
 "TODO better mappings
 call dein#add('vimwiki/vimwiki')
+	let g:vimwiki_table_mappings = 0
 	let g:vimwiki_folding = 'expr'
 	let g:vimwiki_list = [{
 				\ 'path': '$HOME/Dropbox/wiki',
