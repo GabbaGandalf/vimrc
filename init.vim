@@ -55,6 +55,9 @@ if executable('clang')
 		let g:clang_make_default_keymappings = 0
 		" let g:clang_use_library = 1
 endif
+if executable("gocode")
+    call dein#add("zchee/deoplete-go", {'build' : 'make'})
+endif
 " call dein#add('zchee/deoplete-clang') "too slow somehow
 " 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 " 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
@@ -95,6 +98,13 @@ call dein#add('Junegunn/fzf.vim')
 		setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 	endfunction
 	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+" }}}
+
+" Neomake {{{
+
+    call dein#add("neomake/neomake")
+    autocmd! BufWritePost * Neomake
+
 " }}}
 
 " Notes {{{
@@ -170,9 +180,9 @@ set noshowmode
 " no unfold on { movements
 set foldopen=hor,mark,percent,quickfix,search,tag,undo
 set foldmethod=syntax
-set foldnestmax=3
+set foldnestmax=1
 set foldlevelstart=0
-" set foldminlines=5
+" set foldminlines=1
 set foldtext=FoldText()
 
 " }}}
