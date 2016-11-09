@@ -78,6 +78,8 @@ call dein#add('Shougo/neosnippet-snippets')
 " Language Specific {{{
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
+call dein#add('vim-jp/vim-go-extra', {'on_ft' : 'go'})
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt
 " }}}
 
 " fzf {{{
