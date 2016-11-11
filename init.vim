@@ -79,7 +79,6 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
 call dein#add('vim-jp/vim-go-extra', {'on_ft' : 'go'})
-    autocmd FileType go autocmd BufWritePre <buffer> Fmt
 " }}}
 
 " fzf {{{
@@ -191,6 +190,9 @@ set foldtext=FoldText()
 " Indent options{{{
 
 set ts=4 sts=4 sw=4 expandtab
+
+" cindent options
+set cino=i0,N-s,g0
 
 set list lcs=tab:\ \ ,extends:›,precedes:‹,nbsp:·,trail:·
 
