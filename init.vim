@@ -47,20 +47,40 @@ call dein#add('Shougo/deoplete.nvim')
 
 call dein#add('zchee/deoplete-jedi',{'on_ft' : 'python'})
 	let deoplete#sources#jedi#show_docstring=1
+
+call dein#add('Shougo/neoinclude.vim')
 if executable('clang')
-	call dein#add('rip-rip/clang_complete',{'on_ft': ['cpp','c'],'build' : 'make'})
-		let g:clang_complete_auto = 0
-		let g:clang_auto_select = 0
-		let g:clang_omnicppcomplete_compliance = 0
-		let g:clang_make_default_keymappings = 0
-		" let g:clang_use_library = 1
+	" call dein#add('rip-rip/clang_complete',{'on_ft': ['cpp','c'],'build' : 'make'})
+	" 	let g:clang_complete_auto = 0
+	" 	let g:clang_auto_select = 0
+	" 	let g:clang_omnicppcomplete_compliance = 0
+	" 	let g:clang_make_default_keymappings = 0
+	" 	let g:clang_use_library = 1
+        " let g:clang_auto_user_options = ".clang_complete, compile_commands.json, path"
+call dein#add('gabbagandalf/deoplete-clang')
+	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
+" call dein#add('justmao945/vim-clang')
+    " let g:clang_compilation_database = './build'
+    " let g:clang_vim_exec = "nvim"
+    " disable auto completion for vim-clang
+    " let g:clang_auto = 1
+    " let g:clang_c_completeopt = 'menuone'
+    " let g:clang_cpp_completeopt = 'menuone'
+    " if !exists('g:deoplete#omni_patterns')
+    "     let g:deoplete#omni_patterns = {}
+    " endif
+    " let g:deoplete#omni_patterns.c =
+    "             \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+    " let g:deoplete#omni_patterns.cpp =
+    "             \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
 endif
+
 if executable("gocode")
     call dein#add("zchee/deoplete-go", {'build' : 'make'})
 endif
-" call dein#add('zchee/deoplete-clang') "too slow somehow
-" 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-" 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 call dein#add('Shougo/neosnippet.vim',{'on_i': 1})
 	if has('conceal')
@@ -77,7 +97,7 @@ call dein#add('Shougo/neosnippet-snippets')
 
 " Language Specific {{{
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
-call dein#add('vim-scripts/a.vim', {'on_ft': 'cpp'})
+" call dein#add('vim-scripts/a.vim', {'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
 call dein#add('vim-jp/vim-go-extra', {'on_ft' : 'go'})
 " }}}
@@ -106,6 +126,7 @@ call dein#add('Junegunn/fzf.vim')
 
     call dein#add("neomake/neomake")
     autocmd! BufWritePost * Neomake
+    let g:neomake_cpp_enabled_makers = ["clangtidy"]
 
 " }}}
 
