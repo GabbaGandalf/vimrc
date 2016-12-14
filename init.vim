@@ -22,16 +22,17 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
+call dein#add('dylanaraps/wal')
 call dein#add('tpope/vim-commentary')
 call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
 
-call dein#add('Konfekt/FastFold')
-	let g:fastfold_savehook = 1
-	let g:fastfold_fdmhook = 0
-	nmap zuz <Plug>(FastFoldUpdate)
-	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-	" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+" call dein#add('Konfekt/FastFold')
+" 	let g:fastfold_savehook = 1
+" 	let g:fastfold_fdmhook = 0
+" 	nmap zuz <Plug>(FastFoldUpdate)
+" 	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+" 	" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 
 call dein#add('ludovicchabant/vim-gutentags')
 	let g:gutentags_tagfile = ".tags"
@@ -57,7 +58,7 @@ if executable('clang')
 	" 	let g:clang_make_default_keymappings = 0
 	" 	let g:clang_use_library = 1
         " let g:clang_auto_user_options = ".clang_complete, compile_commands.json, path"
-call dein#add('gabbagandalf/deoplete-clang')
+call dein#add('gabbagandalf/deoplete-clang',{'on_ft': ['cpp','c']} )
 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
@@ -99,7 +100,15 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 " call dein#add('vim-scripts/a.vim', {'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
-call dein#add('vim-jp/vim-go-extra', {'on_ft' : 'go'})
+call dein#add('fatih/vim-go', {'on_ft' : 'go'})
+    let g:go_fmt_command = "goimports"
+    let g:go_fmt_fail_silently = 1
+    let g:go_fmt_experimental = 1
+    let g:go_metalinter_autosave = 0
+    let g:go_snippet_engine = "neosnippet"
+    let g:go_metalinter_autosave_enabled = []
+    let g:go_metalinter_enabled = []
+    let g:go_asmfmt_autosave = 0
 " }}}
 
 " fzf {{{
@@ -126,7 +135,17 @@ call dein#add('Junegunn/fzf.vim')
 
     call dein#add("neomake/neomake")
     autocmd! BufWritePost * Neomake
-    let g:neomake_cpp_enabled_makers = ["clangtidy"]
+    " let g:neomake_cpp_enabled_makers = ["clangtidy"]
+    " call dein#add('vim-syntastic/syntastic')
+    "     set statusline+=%#warningmsg#
+    "     set statusline+=%{SyntasticStatuslineFlag()}
+    "     set statusline+=%*
+    "     let g:syntastic_cpp_check_header = 1
+    "     let g:syntastic_cpp_include_dirs = ["../includes","../include","../../includes","../../include"]
+    "     let g:syntastic_always_populate_loc_list = 1
+    "     let g:syntastic_auto_loc_list = 1
+    "     let g:syntastic_check_on_open = 1
+    "     let g:syntastic_check_on_wq = 0
 
 " }}}
 
@@ -289,6 +308,7 @@ vnoremap // y/<C-R>"<CR>
 au FileType *		setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable comment new line
 au FileType c		setlocal commentstring=//\ %s
 au FileType cpp		setlocal commentstring=//\ %s
+au FileType cpp		call Findinclude()
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
 au FileType vimwiki		setlocal nowrap
@@ -351,6 +371,23 @@ set directory=~/.config/nvim/swap//
 
 "}}}
 " Functions{{{
+
+"find include dir for cpp
+function! Findinclude()
+    let b:gitfolder = finddir('.git', ',;')
+    echo "in findinclude"
+    if b:gitfolder =~ ''
+        let b:oldpath = &path
+        let b:root =  split(b:gitfolder,'/')
+        let b:path = join(b:root[0:-2], '/')
+        set path=**;b:path
+        let b:inc =  finddir('include')
+        if b:inc =~ ''
+            let b:neomake_cpp_clang_args = [ '-I'. b:inc ]
+        endif
+        set path=b:oldpath
+    endif
+endfunction
 
 "Display the numbered registers, press a key and paste it to the buffer
 function! Reg()
