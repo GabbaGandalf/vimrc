@@ -97,6 +97,7 @@ call dein#add('Shougo/neosnippet-snippets')
 " }}}
 
 " Language Specific {{{
+call dein#add('google/vim-ft-bzl')
 call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 " call dein#add('vim-scripts/a.vim', {'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
@@ -133,8 +134,8 @@ call dein#add('Junegunn/fzf.vim')
 
 " Neomake {{{
 
-    call dein#add("neomake/neomake")
-    autocmd! BufWritePost * Neomake
+   call dein#add("neomake/neomake")
+   autocmd! BufWritePost * Neomake
     " let g:neomake_cpp_enabled_makers = ["clangtidy"]
     " call dein#add('vim-syntastic/syntastic')
     "     set statusline+=%#warningmsg#
@@ -308,7 +309,7 @@ vnoremap // y/<C-R>"<CR>
 au FileType *		setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable comment new line
 au FileType c		setlocal commentstring=//\ %s
 au FileType cpp		setlocal commentstring=//\ %s
-au FileType cpp		call Findinclude()
+" au FileType cpp		call Findinclude()
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
 au FileType vimwiki		setlocal nowrap
