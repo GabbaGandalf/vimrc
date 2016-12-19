@@ -133,19 +133,19 @@ call dein#add('Junegunn/fzf.vim')
 
 " Neomake {{{
 
-    call dein#add("neomake/neomake")
-    autocmd! BufWritePost * Neomake
-    " let g:neomake_cpp_enabled_makers = ["clangtidy"]
-    " call dein#add('vim-syntastic/syntastic')
-    "     set statusline+=%#warningmsg#
-    "     set statusline+=%{SyntasticStatuslineFlag()}
-    "     set statusline+=%*
-    "     let g:syntastic_cpp_check_header = 1
-    "     let g:syntastic_cpp_include_dirs = ["../includes","../include","../../includes","../../include"]
-    "     let g:syntastic_always_populate_loc_list = 1
-    "     let g:syntastic_auto_loc_list = 1
-    "     let g:syntastic_check_on_open = 1
-    "     let g:syntastic_check_on_wq = 0
+    " call dein#add("neomake/neomake", { 'rev' : 'e282ff7'})
+    "     autocmd! BufWritePost * Neomake
+    "     let g:neomake_cpp_enabled_makers = ["clang"]
+    call dein#add('vim-syntastic/syntastic')
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+        let g:syntastic_cpp_check_header = 1
+        let g:syntastic_cpp_config_file = ".clang_syn"
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 0
+        let g:syntastic_check_on_open = 0
+        let g:syntastic_check_on_wq = 0
 
 " }}}
 
@@ -308,7 +308,7 @@ vnoremap // y/<C-R>"<CR>
 au FileType *		setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable comment new line
 au FileType c		setlocal commentstring=//\ %s
 au FileType cpp		setlocal commentstring=//\ %s
-au FileType cpp		call Findinclude()
+"au FileType cpp		call Findinclude()
 au FileType python	setlocal fdm=indent formatprg=autopep8\ -
 " au Filetype python	vnoremap <buffer> gq gq:%retab!<CR>
 au FileType vimwiki		setlocal nowrap
