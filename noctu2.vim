@@ -221,6 +221,10 @@ hi SyntasticWarningSign  ctermfg=3   ctermbg=NONE
 hi SyntasticErrorSign    ctermfg=1   ctermbg=NONE
 
 "}}}
+" Ale {{{
+hi ALEErrorSign ctermfg=red ctermbg=NONE
+hi ALEWarningSign ctermfg=gray ctermbg=NONE
+" }}}
 " Netrw {{{
 hi netrwExe       ctermfg=9
 hi netrwClassify  ctermfg=8  cterm=bold

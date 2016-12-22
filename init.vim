@@ -27,15 +27,10 @@ call dein#add('tpope/vim-commentary')
 call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
 
-" call dein#add('Konfekt/FastFold')
-" 	let g:fastfold_savehook = 1
-" 	let g:fastfold_fdmhook = 0
-" 	nmap zuz <Plug>(FastFoldUpdate)
-" 	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-" 	" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-
 call dein#add('ludovicchabant/vim-gutentags')
 	let g:gutentags_tagfile = ".tags"
+call dein#add('MarcWeber/vim-addon-local-vimrc.git')
+    let g:local_vimrc = {'names':['.lvimrc']}
 " }}}
 
 " Autocompletion {{{
@@ -134,19 +129,14 @@ call dein#add('Junegunn/fzf.vim')
 " Neomake {{{
 
     " until cpp neomake is fixed use syntastic
-    call dein#add("neomake/neomake")
-        autocmd! BufWritePost * Neomake
-        let g:neomake_cpp_enabled_makers = []
-    call dein#add('vim-syntastic/syntastic', { 'on_ft': 'cpp'})
-        au FileType cpp set statusline+=%#warningmsg#
-        au FileType cpp set statusline+=%{SyntasticStatuslineFlag()}
-        au FileType cpp set statusline+=%*
-        let g:syntastic_cpp_check_header = 1
-        let g:syntastic_cpp_config_file = ".clang_syn"
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 0
-        let g:syntastic_check_on_open = 0
-        let g:syntastic_check_on_wq = 0
+    " call dein#add("neomake/neomake")
+    "     autocmd! BufWritePost * Neomake
+    "     let g:neomake_cpp_enabled_makers = []
+	call dein#add('w0rp/ale.git')
+        " let g:ale_statusline_format = ['X %d', '⚠ %d', '⬥ ok']
+        let g:ale_echo_msg_format = '%linter%: %s'
+        let g:ale_sign_error = 'x'
+        let g:ale_sign_warning = '⚠'
 
 " }}}
 
