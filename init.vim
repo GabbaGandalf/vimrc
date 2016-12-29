@@ -22,9 +22,9 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
+call dein#add('yuttie/comfortable-motion.vim')
 call dein#add('dylanaraps/wal')
 call dein#add('tpope/vim-commentary')
-call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
 
 call dein#add('ludovicchabant/vim-gutentags')
@@ -53,7 +53,7 @@ if executable('clang')
 	" 	let g:clang_make_default_keymappings = 0
 	" 	let g:clang_use_library = 1
         " let g:clang_auto_user_options = ".clang_complete, compile_commands.json, path"
-call dein#add('gabbagandalf/deoplete-clang',{'on_ft': ['cpp','c']} )
+call dein#add('zchee/deoplete-clang',{'on_ft': ['cpp','c']} )
 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
@@ -128,12 +128,11 @@ call dein#add('Junegunn/fzf.vim')
 
 " Neomake {{{
 
-    " until cpp neomake is fixed use syntastic
     " call dein#add("neomake/neomake")
     "     autocmd! BufWritePost * Neomake
     "     let g:neomake_cpp_enabled_makers = []
 	call dein#add('w0rp/ale.git')
-        " let g:ale_statusline_format = ['X %d', '⚠ %d', '⬥ ok']
+        let g:ale_lint_delay = 600
         let g:ale_echo_msg_format = '%linter%: %s'
         let g:ale_sign_error = 'x'
         let g:ale_sign_warning = '⚠'
