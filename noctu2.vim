@@ -16,47 +16,47 @@ let colors_name="noctu2"
 
 "}}}
 " Vim UI {{{
-hi Cursor              ctermfg=lightgray     ctermbg=darkred
-hi CursorLine          ctermbg=black     cterm=NONE
-hi MatchParen          ctermfg=darkred    ctermbg=NONE cterm=bold
-hi Pmenu               ctermfg=white    ctermbg=None
-hi PmenuThumb          ctermbg=white
-hi PmenuSBar           ctermbg=darkgray
-" hi PmenuSel            ctermfg=lightgray     ctermbg=4
-hi PmenuSel            ctermfg=lightgray     cterm=bold 
-hi ColorColumn         ctermbg=black
-hi SpellBad            ctermfg=darkred     ctermbg=NONE  cterm=underline
-hi SpellCap            ctermfg=Green    ctermbg=NONE  cterm=underline
-hi SpellRare           ctermfg=yellow    ctermbg=NONE  cterm=underline
-hi SpellLocal          ctermfg=magenta    ctermbg=NONE  cterm=underline
-hi NonText             ctermfg=darkgray
-hi LineNr              ctermfg=darkgray     ctermbg=NONE
-hi CursorLineNr        ctermfg=yellow    ctermbg=black
-hi Visual              ctermfg=lightgray  ctermbg=darkgray
-hi IncSearch           ctermfg=black     ctermbg=magenta    cterm=NONE
-hi Search              ctermfg=black     ctermbg=Green
-hi StatusLine          ctermfg=lightgray     ctermbg=black     cterm=bold
-hi StatusLineNC        ctermfg=darkgray     ctermbg=black     cterm=bold
-hi VertSplit           ctermfg=black     ctermbg=black     cterm=NONE
-hi TabLine             ctermfg=darkgray     ctermbg=black     cterm=NONE
-hi TabLineSel          ctermfg=lightgray     ctermbg=black
-hi Folded              ctermfg=yellow     ctermbg=None
-hi Directory           ctermfg=blue
-hi Title               ctermfg=yellow     cterm=bold
-hi ErrorMsg            ctermfg=white    ctermbg=darkred
-hi DiffAdd             ctermfg=black     ctermbg=darkgreen
-hi DiffChange          ctermfg=black     ctermbg=yellow
-hi DiffDelete          ctermfg=black     ctermbg=darkred
-hi DiffText            ctermfg=black     ctermbg=yellow    cterm=bold
-hi User1               ctermfg=white    ctermbg=magenta
-hi User2               ctermfg=white    ctermbg=darkgray
-hi User3               ctermfg=white    ctermbg=yellow
-hi User4               ctermfg=white    ctermbg=black
-hi User5               ctermfg=white    ctermbg=magenta
-hi User6               ctermfg=white    ctermbg=cyan
-hi User7               ctermfg=white    ctermbg=blue
-hi User8               ctermfg=white    ctermbg=yellow
-hi User9               ctermfg=white    ctermbg=darkgray
+hi Cursor              ctermfg=7     ctermbg=1
+hi CursorLine          ctermbg=0     cterm=NONE
+hi MatchParen          ctermfg=1    ctermbg=NONE cterm=bold
+hi Pmenu               ctermfg=15    ctermbg=None
+hi PmenuThumb          ctermbg=7
+hi PmenuSBar           ctermbg=8
+" hi PmenuSel            ctermfg=7     ctermbg=4
+hi PmenuSel            ctermfg=7     cterm=bold 
+hi ColorColumn         ctermbg=0
+hi SpellBad            ctermfg=1     ctermbg=NONE  cterm=underline
+hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
+hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
+hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
+hi NonText             ctermfg=8
+hi LineNr              ctermfg=8     ctermbg=NONE
+hi CursorLineNr        ctermfg=11    ctermbg=0
+hi Visual              ctermfg=7  ctermbg=8
+hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
+hi Search              ctermfg=0     ctermbg=10
+hi StatusLine          ctermfg=7     ctermbg=0     cterm=bold
+hi StatusLineNC        ctermfg=8     ctermbg=0     cterm=bold
+hi VertSplit           ctermfg=0     ctermbg=0     cterm=NONE
+hi TabLine             ctermfg=8     ctermbg=0     cterm=NONE
+hi TabLineSel          ctermfg=7     ctermbg=0
+hi Folded              ctermfg=3     ctermbg=None
+hi Directory           ctermfg=12
+hi Title               ctermfg=3     cterm=bold
+hi ErrorMsg            ctermfg=15    ctermbg=1
+hi DiffAdd             ctermfg=0     ctermbg=2
+hi DiffChange          ctermfg=0     ctermbg=3
+hi DiffDelete          ctermfg=0     ctermbg=1
+hi DiffText            ctermfg=0     ctermbg=11    cterm=bold
+hi User1               ctermfg=15    ctermbg=5
+hi User2               ctermfg=15    ctermbg=8
+hi User3               ctermfg=15    ctermbg=3
+hi User4               ctermfg=15    ctermbg=0
+hi User5               ctermfg=15    ctermbg=13
+hi User6               ctermfg=15    ctermbg=14
+hi User7               ctermfg=15    ctermbg=12
+hi User8               ctermfg=15    ctermbg=11
+hi User9               ctermfg=15    ctermbg=8
 hi! link CursorColumn  CursorLine
 hi! link SignColumn    LineNr
 hi! link WildMenu      Visual
@@ -70,31 +70,33 @@ hi! link SpecialKey    NonText
 
 "}}}
 " Generic syntax {{{
-hi Delimiter       ctermfg=lightgray
-hi Comment         ctermfg=darkgray   cterm=italic
-hi Underlined      ctermfg=darkblue   cterm=underline
-hi Type            ctermfg=darkcyan
-"hi String          ctermfg=red
-hi String          ctermfg=darkgreen
-hi Keyword         ctermfg=darkblue
-hi Todo            ctermfg=white  ctermbg=NONE     cterm=bold,underline
-hi Function        ctermfg=darkblue
-hi Identifier      ctermfg=lightgray   cterm=NONE
-hi Statement       ctermfg=white   cterm=bold
-hi Constant        ctermfg=magenta
-hi Number          ctermfg=darkred
-hi Boolean         ctermfg=darkblue
-hi Special         ctermfg=magenta
-hi Ignore          ctermfg=black
+hi Delimiter       ctermfg=7
+hi Comment         ctermfg=8   cterm=italic
+hi Underlined      ctermfg=4   cterm=underline
+hi Type            ctermfg=6
+"hi String          ctermfg=9
+hi String          ctermfg=2
+hi Keyword         ctermfg=4
+hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
+hi Function        ctermfg=4
+hi Identifier      ctermfg=7   cterm=NONE
+hi Statement       ctermfg=15   cterm=bold
+"hi Statement       ctermfg=15   cterm=bold
+hi Constant        ctermfg=13
+hi Number          ctermfg=1
+"hi Number          ctermfg=
+hi Boolean         ctermfg=4
+hi Special         ctermfg=13
+hi Ignore          ctermfg=0
 hi! link Operator  Delimiter
 hi! link PreProc   Delimiter
 hi! link Error     ErrorMsg
 
 "}}}
 " HTML {{{
-hi htmlTagName              ctermfg=darkgreen
-hi htmlTag                  ctermfg=darkgreen
-hi htmlArg                  ctermfg=Green
+hi htmlTagName              ctermfg=2
+hi htmlTag                  ctermfg=2
+hi htmlArg                  ctermfg=10
 hi htmlH1                   cterm=bold
 hi htmlBold                 cterm=bold
 hi htmlItalic               cterm=underline
@@ -108,8 +110,8 @@ hi! link htmlEndTag         htmlTag
 
 "}}}
 " XML {{{
-hi xmlTagName       ctermfg=darkblue
-hi xmlTag           ctermfg=blue
+hi xmlTagName       ctermfg=4
+hi xmlTag           ctermfg=12
 hi! link xmlString  xmlTagName
 hi! link xmlAttrib  xmlTag
 hi! link xmlEndTag  xmlTag
@@ -122,8 +124,8 @@ hi! link javaScriptBraces  Delimiter
 
 "}}}
 " PHP {{{
-hi phpSpecialFunction    ctermfg=magenta
-hi phpIdentifier         ctermfg=yellow
+hi phpSpecialFunction    ctermfg=5
+hi phpIdentifier         ctermfg=11
 hi! link phpVarSelector  phpIdentifier
 hi! link phpHereDoc      String
 hi! link phpDefine       Statement
@@ -153,11 +155,11 @@ hi! link rubyStringDelimiter        rubyString
 
 "}}}
 " Git {{{
-hi gitCommitBranch               ctermfg=yellow
-hi gitCommitSelectedType         ctermfg=Green
-hi gitCommitSelectedFile         ctermfg=darkgreen
-hi gitCommitUnmergedType         ctermfg=red
-hi gitCommitUnmergedFile         ctermfg=darkred
+hi gitCommitBranch               ctermfg=3
+hi gitCommitSelectedType         ctermfg=10
+hi gitCommitSelectedFile         ctermfg=2
+hi gitCommitUnmergedType         ctermfg=9
+hi gitCommitUnmergedFile         ctermfg=1
 hi! link gitCommitFile           Directory
 hi! link gitCommitUntrackedFile  gitCommitUnmergedFile
 hi! link gitCommitDiscardedType  gitCommitUnmergedType
@@ -171,7 +173,7 @@ hi! link vimHiAttrib  Constant
 
 "}}}
 " LESS {{{
-hi lessVariable             ctermfg=yellow
+hi lessVariable             ctermfg=11
 hi! link lessVariableValue  Normal
 
 "}}}
@@ -202,30 +204,30 @@ hi! link CtrlPLinePre  Comment
 
 "}}}
 " Mustache {{{
-hi mustacheSection           ctermfg=cyan  cterm=bold
-hi mustacheMarker            ctermfg=darkcyan
-hi mustacheVariable          ctermfg=cyan
-hi mustacheVariableUnescape  ctermfg=red
-hi mustachePartial           ctermfg=magenta
+hi mustacheSection           ctermfg=14  cterm=bold
+hi mustacheMarker            ctermfg=6
+hi mustacheVariable          ctermfg=14
+hi mustacheVariableUnescape  ctermfg=9
+hi mustachePartial           ctermfg=13
 
 "}}}
 " Shell {{{
-hi shDerefSimple     ctermfg=yellow
+hi shDerefSimple     ctermfg=11
 hi! link shDerefVar  shDerefSimple
 
 "}}}
 " Syntastic {{{
-hi SyntasticWarningSign  ctermfg=yellow   ctermbg=NONE
-hi SyntasticErrorSign    ctermfg=darkred   ctermbg=NONE
+hi SyntasticWarningSign  ctermfg=3   ctermbg=NONE
+hi SyntasticErrorSign    ctermfg=1   ctermbg=NONE
 
 "}}}
 " Ale {{{
-hi ALEErrorSign ctermfg=darkred ctermbg=NONE
+hi ALEErrorSign ctermfg=red ctermbg=NONE
 hi ALEWarningSign ctermfg=gray ctermbg=NONE
 " }}}
 " Netrw {{{
-hi netrwExe       ctermfg=red
-hi netrwClassify  ctermfg=darkgray  cterm=bold
+hi netrwExe       ctermfg=9
+hi netrwClassify  ctermfg=8  cterm=bold
 
 "}}}
 
