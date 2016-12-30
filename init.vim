@@ -22,8 +22,10 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
+call dein#add('junegunn/vim-easy-align')
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
 call dein#add('yuttie/comfortable-motion.vim')
-call dein#add('dylanaraps/wal')
 call dein#add('tpope/vim-commentary')
 call dein#add('airblade/vim-gitgutter')
 
