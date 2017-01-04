@@ -1,9 +1,31 @@
-" noctu.vim - Vim color scheme for 16-color terminals
+" noctu2.vim - Vim color scheme for 16-color terminals
 " --------------------------------------------------------------
-" Author:   Noah Frederick (http://noahfrederick.com/)
-" Version:  1.7.0
+" OriginalAuthor:   Noah Frederick (http://noahfrederick.com/)
+" Modified:         gabbagandalf   (http://github.com/gabbagandalf)
 " --------------------------------------------------------------
 
+" {{{
+" termonal colors:
+" if you forget meaning of a number jump with gd
+
+0  " black
+8  " lightblack
+1  " red
+9  " lightred
+2  " green
+10 " lightgreen
+3  " darkyellow/brown
+11 " yellow
+4  " blue
+12 " lightblue
+5  " magenta
+13 " lightmagenta
+6  " cyan
+14 " lightcyan
+7  " gray
+15 " white
+
+" }}}
 " Scheme setup {{{
 set background=dark
 hi! clear
@@ -16,75 +38,62 @@ let colors_name="noctu2"
 
 "}}}
 " Vim UI {{{
-hi Cursor              ctermfg=7     ctermbg=1
-hi CursorLine          ctermbg=0     cterm=NONE
-hi MatchParen          ctermfg=1    ctermbg=NONE cterm=bold
-hi Pmenu               ctermfg=15    ctermbg=None
+hi Cursor              ctermfg=7  ctermbg=1
+hi CursorLine          ctermbg=0  cterm=NONE
+hi MatchParen          ctermfg=1  ctermbg=NONE cterm=bold
+hi Pmenu               ctermfg=15 ctermbg=None
 hi PmenuThumb          ctermbg=7
 hi PmenuSBar           ctermbg=8
-" hi PmenuSel            ctermfg=7     ctermbg=4
-hi PmenuSel            ctermfg=7     cterm=bold 
+hi PmenuSel            ctermfg=7  cterm=bold
 hi ColorColumn         ctermbg=0
-hi SpellBad            ctermfg=1     ctermbg=NONE  cterm=underline
-hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
-hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
-hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
+hi SpellBad            ctermfg=1  ctermbg=NONE cterm=underline
+hi SpellCap            ctermfg=10 ctermbg=NONE cterm=underline
+hi SpellRare           ctermfg=11 ctermbg=NONE cterm=underline
+hi SpellLocal          ctermfg=13 ctermbg=NONE cterm=underline
 hi NonText             ctermfg=8
-hi LineNr              ctermfg=8     ctermbg=NONE
-hi CursorLineNr        ctermfg=11    ctermbg=0
-hi Visual              ctermfg=7  ctermbg=8
-hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
-hi Search              ctermfg=0     ctermbg=10
-hi StatusLine          ctermfg=7     ctermbg=0     cterm=bold
-hi StatusLineNC        ctermfg=8     ctermbg=0     cterm=bold
-hi VertSplit           ctermfg=0     ctermbg=0     cterm=NONE
-hi TabLine             ctermfg=8     ctermbg=0     cterm=NONE
-hi TabLineSel          ctermfg=7     ctermbg=0
-hi Folded              ctermfg=3     ctermbg=None
+hi LineNr              ctermfg=8  ctermbg=NONE
+hi CursorLineNr        ctermfg=11 ctermbg=0
+hi Visual              ctermfg=15  ctermbg=8
+hi IncSearch           ctermfg=0  ctermbg=13   cterm=NONE
+hi Search              ctermfg=0  ctermbg=10
+hi StatusLine          ctermfg=7  ctermbg=0    cterm=bold
+hi StatusLineNC        ctermfg=8  ctermbg=0    cterm=bold
+hi VertSplit           ctermfg=0  ctermbg=0    cterm=NONE
+hi TabLine             ctermfg=8  ctermbg=0    cterm=NONE
+hi TabLineSel          ctermfg=7  ctermbg=0
+hi Folded              ctermfg=3  ctermbg=None
 hi Directory           ctermfg=12
-hi Title               ctermfg=3     cterm=bold
-hi ErrorMsg            ctermfg=15    ctermbg=1
-hi DiffAdd             ctermfg=0     ctermbg=2
-hi DiffChange          ctermfg=0     ctermbg=3
-hi DiffDelete          ctermfg=0     ctermbg=1
-hi DiffText            ctermfg=0     ctermbg=11    cterm=bold
-hi User1               ctermfg=15    ctermbg=5
-hi User2               ctermfg=15    ctermbg=8
-hi User3               ctermfg=15    ctermbg=3
-hi User4               ctermfg=15    ctermbg=0
-hi User5               ctermfg=15    ctermbg=13
-hi User6               ctermfg=15    ctermbg=14
-hi User7               ctermfg=15    ctermbg=12
-hi User8               ctermfg=15    ctermbg=11
-hi User9               ctermfg=15    ctermbg=8
-hi! link CursorColumn  CursorLine
-hi! link SignColumn    LineNr
-hi! link WildMenu      Visual
-hi! link FoldColumn    SignColumn
-hi! link WarningMsg    ErrorMsg
-hi! link MoreMsg       Title
-hi! link Question      MoreMsg
-hi! link ModeMsg       MoreMsg
-hi! link TabLineFill   StatusLineNC
-hi! link SpecialKey    NonText
+hi Title               ctermfg=3  cterm=bold
+hi ErrorMsg            ctermfg=15 ctermbg=1
+hi DiffAdd             ctermfg=0  ctermbg=2
+hi DiffChange          ctermfg=0  ctermbg=3
+hi DiffDelete          ctermfg=0  ctermbg=1
+hi DiffText            ctermfg=0  ctermbg=11   cterm=bold
+hi! link CursorColumn             CursorLine
+hi! link SignColumn               LineNr
+hi! link WildMenu                 Visual
+hi! link FoldColumn               SignColumn
+hi! link WarningMsg               ErrorMsg
+hi! link MoreMsg                  Title
+hi! link Question                 MoreMsg
+hi! link ModeMsg                  MoreMsg
+hi! link TabLineFill              StatusLineNC
+hi! link SpecialKey               NonText
 
 "}}}
 " Generic syntax {{{
 hi Delimiter       ctermfg=7
-hi Comment         ctermfg=8   cterm=italic
-hi Underlined      ctermfg=4   cterm=underline
+hi Comment         ctermfg=8  cterm=italic
+hi Underlined      ctermfg=4  cterm=underline
 hi Type            ctermfg=6
-"hi String          ctermfg=9
 hi String          ctermfg=2
 hi Keyword         ctermfg=4
-hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
+hi Todo            ctermfg=15 ctermbg=NONE cterm=bold,underline
 hi Function        ctermfg=4
-hi Identifier      ctermfg=7   cterm=NONE
-hi Statement       ctermfg=15   cterm=bold
-"hi Statement       ctermfg=15   cterm=bold
+hi Identifier      ctermfg=7  cterm=NONE
+hi Statement       ctermfg=15 cterm=bold
 hi Constant        ctermfg=13
 hi Number          ctermfg=1
-"hi Number          ctermfg=
 hi Boolean         ctermfg=4
 hi Special         ctermfg=13
 hi Ignore          ctermfg=0
@@ -217,10 +226,15 @@ hi! link shDerefVar  shDerefSimple
 
 "}}}
 " Syntastic {{{
-hi SyntasticWarningSign  ctermfg=3   ctermbg=NONE
-hi SyntasticErrorSign    ctermfg=1   ctermbg=NONE
+hi SyntasticWarningSign  ctermfg=3 ctermbg=NONE
+hi SyntasticErrorSign    ctermfg=1 ctermbg=NONE
 
 "}}}
+" Ale {{{
+hi ALEErrorSign   ctermfg=1 ctermbg=NONE
+hi ALEWarningSign ctermfg=8 ctermbg=NONE
+
+" }}}
 " Netrw {{{
 hi netrwExe       ctermfg=9
 hi netrwClassify  ctermfg=8  cterm=bold

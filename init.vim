@@ -22,20 +22,17 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
-call dein#add('dylanaraps/wal')
+call dein#add('junegunn/vim-easy-align')
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
+call dein#add('yuttie/comfortable-motion.vim')
 call dein#add('tpope/vim-commentary')
-call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
-
-" call dein#add('Konfekt/FastFold')
-" 	let g:fastfold_savehook = 1
-" 	let g:fastfold_fdmhook = 0
-" 	nmap zuz <Plug>(FastFoldUpdate)
-" 	let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-" 	" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 
 call dein#add('ludovicchabant/vim-gutentags')
 	let g:gutentags_tagfile = ".tags"
+call dein#add('MarcWeber/vim-addon-local-vimrc.git')
+    let g:local_vimrc = {'names':['.lvimrc']}
 " }}}
 
 " Autocompletion {{{
@@ -58,7 +55,7 @@ if executable('clang')
 	" 	let g:clang_make_default_keymappings = 0
 	" 	let g:clang_use_library = 1
         " let g:clang_auto_user_options = ".clang_complete, compile_commands.json, path"
-call dein#add('gabbagandalf/deoplete-clang',{'on_ft': ['cpp','c']} )
+call dein#add('zchee/deoplete-clang',{'on_ft': ['cpp','c']} )
 	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
@@ -134,19 +131,14 @@ call dein#add('Junegunn/fzf.vim')
 
 " Neomake {{{
 
-    " call dein#add("neomake/neomake", { 'rev' : 'e282ff7'})
+    " call dein#add("neomake/neomake")
     "     autocmd! BufWritePost * Neomake
-    "     let g:neomake_cpp_enabled_makers = ["clang"]
-    call dein#add('vim-syntastic/syntastic')
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-        let g:syntastic_cpp_check_header = 1
-        let g:syntastic_cpp_config_file = ".clang_syn"
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 0
-        let g:syntastic_check_on_open = 0
-        let g:syntastic_check_on_wq = 0
+    "     let g:neomake_cpp_enabled_makers = []
+	call dein#add('w0rp/ale.git')
+        let g:ale_lint_delay = 600
+        let g:ale_echo_msg_format = '%linter%: %s'
+        let g:ale_sign_error = 'x'
+        let g:ale_sign_warning = '⚠'
 
 " }}}
 
