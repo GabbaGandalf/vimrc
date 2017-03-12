@@ -103,19 +103,10 @@ hi! link Error     ErrorMsg
 
 "}}}
 " HTML {{{
-hi htmlTagName              ctermfg=2
-hi htmlTag                  ctermfg=2
-hi htmlArg                  ctermfg=10
-hi htmlH1                   cterm=bold
-hi htmlBold                 cterm=bold
-hi htmlItalic               cterm=underline
-hi htmlUnderline            cterm=underline
-hi htmlBoldItalic           cterm=bold,underline
-hi htmlBoldUnderline        cterm=bold,underline
-hi htmlUnderlineItalic      cterm=underline
-hi htmlBoldUnderlineItalic  cterm=bold,underline
-hi! link htmlLink           Underlined
-hi! link htmlEndTag         htmlTag
+
+hi! link htmlTagName        Normal
+hi! link htmlTag            Normal
+hi htmlArg            cterm=bold
 
 "}}}
 " XML {{{

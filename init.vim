@@ -22,15 +22,12 @@ call dein#add('Shougo/dein.vim')
 " }}}
 
 " misc {{{
-call dein#add('junegunn/vim-easy-align')
-    xmap ga <Plug>(EasyAlign)
-    nmap ga <Plug>(EasyAlign)
-call dein#add('yuttie/comfortable-motion.vim')
 call dein#add('tpope/vim-commentary')
+call dein#add('wellle/targets.vim')
 call dein#add('airblade/vim-gitgutter')
 
 call dein#add('ludovicchabant/vim-gutentags')
-	let g:gutentags_tagfile = ".tags"
+	let g:gutentags_ctags_tagfile = ".tags"
 call dein#add('MarcWeber/vim-addon-local-vimrc.git')
     let g:local_vimrc = {'names':['.lvimrc']}
 " }}}
@@ -98,7 +95,7 @@ call dein#add('octol/vim-cpp-enhanced-highlight',{'on_ft': 'cpp'})
 " call dein#add('vim-scripts/a.vim', {'on_ft': 'cpp'})
 call dein#add('mitsuhiko/vim-python-combined', {'on_ft' : 'python'})
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
-    let g:go_fmt_command = "goimports"
+    " let g:go_fmt_command = "goimports"
     let g:go_fmt_fail_silently = 1
     let g:go_fmt_experimental = 1
     let g:go_metalinter_autosave = 0
@@ -108,7 +105,8 @@ call dein#add('fatih/vim-go', {'on_ft' : 'go'})
     let g:go_asmfmt_autosave = 0
 " }}}
 
-" fzf {{{
+" file and buffer switching {{{
+call dein#add('bling/vim-bufferline')
 call dein#add('Junegunn/fzf', {'build' : './install --all'})
 call dein#add('Junegunn/fzf.vim')
 	nnoremap <Leader>o :FZF<CR>
@@ -130,14 +128,14 @@ call dein#add('Junegunn/fzf.vim')
 
 " Neomake {{{
 
-    " call dein#add("neomake/neomake")
-    "     autocmd! BufWritePost * Neomake
-    "     let g:neomake_cpp_enabled_makers = []
-	call dein#add('w0rp/ale.git')
-        let g:ale_lint_delay = 600
-        let g:ale_echo_msg_format = '%linter%: %s'
-        let g:ale_sign_error = 'x'
-        let g:ale_sign_warning = '⚠'
+    call dein#add("neomake/neomake")
+        autocmd! BufWritePost * Neomake
+        let g:neomake_cpp_enabled_makers = []
+	" call dein#add('w0rp/ale.git')
+        " let g:ale_lint_delay = 600
+        " let g:ale_echo_msg_format = '%linter%: %s'
+        " let g:ale_sign_error = 'x'
+        " let g:ale_sign_warning = '⚠'
 
 " }}}
 
@@ -215,7 +213,7 @@ set noshowmode
 set foldopen=hor,mark,percent,quickfix,search,tag,undo
 set foldmethod=syntax
 set foldnestmax=1
-set foldlevelstart=0
+" set foldlevelstart=0
 " set foldminlines=1
 set foldtext=FoldText()
 
@@ -344,6 +342,7 @@ endif
 
 set wildmenu 
 set tags=./tags;,tags;
+set autochdir
 
 " }}}
 " Backup {{{
